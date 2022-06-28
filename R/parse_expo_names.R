@@ -20,7 +20,7 @@ parse_expo_names <- function(x) {
     "temp_cold_sd",
     "tempsdc"
   )
-  exposure <- case_when(
+  exposure <- dplyr::case_when(
     str_detect(x_lower, "no2") ~ "NO2",
     str_detect(x_lower, "pm25") ~ "PM2.5",
     str_detect(x_lower, "bc") ~ "BC",

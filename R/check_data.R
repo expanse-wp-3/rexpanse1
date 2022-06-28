@@ -1,9 +1,7 @@
-check_data <- function(data, air_vars, built_vars, temp_vars) {
-  expo_names <- c(air_vars, built_vars, temp_vars)
-  missing_expo_names <- expo_names[!expo_names %in% colnames(data)]
+check_data <- function(data) {
+  missing_expo_names <- expo_names[!exposure_names_clean %in% colnames(data)]
 
-  complete_cases_rows <- complete.cases(data[expo_names]) %>%
-    nrows()
+  complete_cases_rows <- nrow(stats::complete.cases(data[exposure_names_clean]))
   if (complete_cases_rows != nrow(data)) {
     stop("Exposure variables must not contain missing values.")
   }

@@ -11,7 +11,7 @@ run_pipeline <- function(data,
   check_data(data_expo)
   expo_quantiles <- get_quantiles(data_expo)
   pca_summary <- get_pca(data_expo, air_vars, built_vars, temp_vars)
-  rexpanse1_version <- packageVersion("rexpanse1")
+  rexpanse1_version <- utils::packageVersion("rexpanse1")
 
   results <- list(
     cohort = cohort_name,

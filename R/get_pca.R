@@ -1,5 +1,5 @@
 get_pca <- function(data, summary = TRUE, suffix) {
-  pca <- prcomp(data, center = TRUE, scale. = TRUE)
+  pca <- stats::prcomp(data, center = TRUE, scale. = TRUE)
   pca_loadings <- pca$rotation
   pca_variance <- summary(pca)$importance
 
@@ -10,8 +10,7 @@ get_pca <- function(data, summary = TRUE, suffix) {
 
   if (summary == FALSE) {
     # TODO Should id be provided?
-    pca_data <- pca$x %>%
-      as_tibble()
+    pca_data <- tibble::tibble(pca$x)
 
     if (missing(suffix)) {
       colnames(pca_data) <- tolower(colnames(pca_data))
