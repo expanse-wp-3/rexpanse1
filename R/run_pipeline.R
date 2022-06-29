@@ -1,3 +1,14 @@
+##' Generates all results for Paper 1.
+##'
+##' @title Run full analysis pipeline
+##' @param data
+##' @param ses_var
+##' @param other_vars
+##' @param cohort_name
+##' @param write
+##' @param output_dir
+##' @return
+##' @author Sergio Olmos
 run_pca <- function(data,
                     ses_var,
                     other_vars,

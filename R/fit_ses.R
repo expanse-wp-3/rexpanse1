@@ -1,3 +1,12 @@
+##' Fit models assessing relationship between SES and principal components.
+##'
+##' @title Fit SES models
+##' @param data
+##' @param pc_var
+##' @param ses_var
+##' @param other_vars
+##' @return
+##' @author Sergio Olmos
 fit_ses <- function(data, pc_var, ses_var, other_vars) {
 
   model_formula <- paste(
@@ -11,7 +20,7 @@ fit_ses <- function(data, pc_var, ses_var, other_vars) {
       paste(other_vars, collapse = " + "))
   }
 
-  model <- lm(as.formula(model_formula), data = data)
+  model <- stats::lm(stats::as.formula(model_formula), data = data)
 
   model_output <- list(
     summary = broom::tidy(model),

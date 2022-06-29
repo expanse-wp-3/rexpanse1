@@ -17,9 +17,10 @@
 ##' @param data Data frame containing the exposures of interest. See Details.
 ##' @return A matrix with quantiles (rows) for each exposure (columns).
 ##' @author Sergio Olmos
+##' @export
 ##' @examples
 ##' data(exposures)
-##' get_quantiles(exposures, write = FALSE)
+##' get_quantiles(exposures)
 get_quantiles <- function(data) {
   exposures_only <- data[exposure_names_clean]
 

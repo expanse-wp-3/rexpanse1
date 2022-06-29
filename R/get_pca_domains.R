@@ -1,13 +1,18 @@
-##' .. content for \description{} (no empty lines) ..
+##' Computes principal component analysis for all domains.
 ##'
-##' .. content for \details{} ..
-##' @title
+##' The domains are overall, air pollution, built environment and temperature.
+##' @title Compute PCA for all domains
 ##' @param data Data frame containing all 11 exposure variables across the three
 ##'   different domains.
 ##' @param summary Logical vector of length one indicating whether only
 ##'   a summary of the PCA should be returned. See Details.
 ##' @return
 ##' @author Sergio Olmos
+##'
+##' @export
+##' @examples
+##' data(exposures)
+##' get_pca_domains(exposures)
 get_pca_domains <- function(data,
                             summary = TRUE) {
   air_vars <- c("no2", "pm25", "bc", "o3")
