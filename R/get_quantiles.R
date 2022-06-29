@@ -3,6 +3,28 @@ get_quantiles <- function(data,
                           dir = ".") {
   check_data(data)
 
+##' Computes exposure quantiles for making exposure boxplots.
+##'
+##' The data frame passed to `data` should contain the eleven exposure
+##' variables with the agreed variable names:
+##' - no2
+##' - pm25
+##' - bc
+##' - o3
+##' - ndvi
+##' - imperv
+##' - dist_water
+##' - temp_warm_mean
+##' - temp_warm_sd
+##' - temp_cold_mean
+##' - temp_cold_mean
+##' @title Compute exposure quantiles
+##' @param data Data frame containing the exposures of interest. See Details.
+##' @return A matrix with quantiles (rows) for each exposure (columns).
+##' @author Sergio Olmos
+##' @examples
+##' data(exposures)
+##' get_quantiles(exposures, write = FALSE)
   exposures_only <- data[exposure_names_clean]
 
   quantile_matrix <- apply(
