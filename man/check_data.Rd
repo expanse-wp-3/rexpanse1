@@ -9,9 +9,6 @@ check_data(data)
 \arguments{
 \item{data}{Data frame to be passed to run_pca() \code{data} argument.}
 }
-\value{
-
-}
 \description{
 Checks if the data is appropriate for subsequent analysis.
 }
