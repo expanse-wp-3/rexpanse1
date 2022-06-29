@@ -14,9 +14,9 @@ exposures <- tibble::tibble(
   dist_water = runif(n, 0, 100),
   # Temperature
   temp_cold_mean = rnorm(n, 10, 3),
-  temp_cold_sd = dunif(n, 2, 5),
+  temp_cold_sd = runif(n, 2, 5),
   temp_warm_mean = rnorm(n, 25, 8),
-  temp_warm_sd = dunif(n, 2, 8),
+  temp_warm_sd = runif(n, 2, 8),
   # SES
   ses = rnorm(n, -4 + no2 - ndvi + temp_warm_mean, 5),
   ses_std = (ses - mean(ses)) / sd(ses)
