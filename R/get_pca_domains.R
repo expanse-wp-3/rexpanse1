@@ -6,6 +6,14 @@ get_pca_domains <- function(data,
                             id_var,
                             write = FALSE,
                             dir = ".") {
+  air_vars <- c("no2", "pm25", "bc", "o3")
+  built_vars <- c("ndvi", "imperv", "dist_water")
+  temp_vars <- c(
+    "temp_warm_mean",
+    "temp_warm_sd",
+    "temp_cold_mean",
+    "temp_cold_sd"
+  )
   pca_domains <- list(
     overall = get_pca(
       data = data[c(air_vars, built_vars, temp_vars)],
