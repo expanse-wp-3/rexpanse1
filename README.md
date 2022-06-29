@@ -7,11 +7,13 @@
 
 <!-- badges: end -->
 
-The goal of rexpanse1 is to …
+The goal of rexpanse1 is to provide the necessary functions for
+generating the results of the paper *Socioeconomic inequalities in urban
+exposome profiles across the life span in European cohorts*.
 
 ## Installation
 
-You can install the development version of rexpanse1 like so:
+You can install the latest version of rexpanse1 like so:
 
 ``` r
 # install.packages("remotes")
@@ -20,36 +22,46 @@ remotes::install_github("expanse-wp-3/rexpanse1")
 
 ## Getting started
 
-This is a basic example which shows you how to solve a common problem:
+For illustration, we will load the example data set, `exposures`,
+included with the package.
 
 ``` r
-## library(rexpanse1)
-## basic example code
+library(rexpanse1)
+
+# Example data set. Use your data instead.
+data(exposures)
+str(exposures)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+You should use your data instead. Note that exposure variables must be
+named as in the example data set:
+
+| Variable name    | Original name | Description                          | Year | Version |
+| ---------------- | ------------- | ------------------------------------ | ---- | ------- |
+| `no2`            | `NO2FULLt`    | Annual average NO2 concentration     | 2010 | Pilot   |
+| `pm25`           |               | Annual average PM2.5 concentration   | 2010 | Pilot   |
+| `bc`             |               | Annual average BC concentration      | 2010 | Pilot   |
+| `o3`             |               | Warm season average O3 concentration | 2010 | Pilot   |
+| `ndvi`           |               | NDVI                                 | 2019 | Pilot   |
+| `imperv`         |               | Percentage of impervious surfaces    |      | Pilot   |
+| `dist_water`     |               | Distance to water (km)               |      | Pilot   |
+| `temp_cold_mean` |               |                                      |      |         |
+| `temp_cold_sd`   |               |                                      |      |         |
+| `temp_warm_mean` |               |                                      |      |         |
+| `temp_warm_sd`   |               |                                      |      |         |
+
+### Quantiles
+
+Get quantiles necessary for producing boxplots:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+expo_quantiles <- get_quantiles(data = exposures, write = FALSE)
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+### PCA
 
-You can also embed plots, for example:
+Principal component analysis *summary* by domain:
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+``` r
+pca_summary <- get_pca(data = exposures, summary = TRUE)
+```
