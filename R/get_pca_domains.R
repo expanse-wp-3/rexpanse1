@@ -1,11 +1,15 @@
+##' .. content for \description{} (no empty lines) ..
+##'
+##' .. content for \details{} ..
+##' @title
+##' @param data Data frame containing all 11 exposure variables across the three
+##'   different domains.
+##' @param summary Logical vector of length one indicating whether only
+##'   a summary of the PCA should be returned. See Details.
+##' @return
+##' @author Sergio Olmos
 get_pca_domains <- function(data,
-                            air_vars,
-                            built_vars,
-                            temp_vars,
-                            summary = TRUE,
-                            id_var,
-                            write = FALSE,
-                            dir = ".") {
+                            summary = TRUE) {
   air_vars <- c("no2", "pm25", "bc", "o3")
   built_vars <- c("ndvi", "imperv", "dist_water")
   temp_vars <- c(
