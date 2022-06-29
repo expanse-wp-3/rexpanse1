@@ -1,3 +1,13 @@
+##' Computes principal components for
+##'
+##' .. content for \details{} ..
+##' @title Compute principal component analysis
+##' @param data
+##' @param summary
+##' @param suffix
+##' @return A list.
+##' @author Sergio Olmos
+##' @export
 get_pca <- function(data, summary = TRUE, suffix) {
   pca <- stats::prcomp(data, center = TRUE, scale. = TRUE)
   pca_loadings <- pca$rotation
