@@ -32,7 +32,7 @@ get_pca <- function(data, summary = TRUE, suffix) {
 
   if (summary == FALSE) {
     # TODO Should id be provided?
-    pca_data <- tibble::tibble(pca$x)
+    pca_data <- tibble::as_tibble(pca$x)
 
     if (missing(suffix)) {
       colnames(pca_data) <- tolower(colnames(pca_data))
