@@ -1,8 +1,3 @@
-get_quantiles <- function(data,
-                          write = FALSE,
-                          dir = ".") {
-  check_data(data)
-
 ##' Computes exposure quantiles for making exposure boxplots.
 ##'
 ##' The data frame passed to `data` should contain the eleven exposure
@@ -25,6 +20,7 @@ get_quantiles <- function(data,
 ##' @examples
 ##' data(exposures)
 ##' get_quantiles(exposures, write = FALSE)
+get_quantiles <- function(data) {
   exposures_only <- data[exposure_names_clean]
 
   quantile_matrix <- apply(
