@@ -30,20 +30,19 @@ get_pca_domains <- function(data,
   )
 
   if (summary == FALSE) {
-    stopifnot(!missing(id_var))
-    pca_data_merged <- dplyr::bind_cols(
-      id = data[id_var],
+    pca_domains_data <- dplyr::bind_cols(
+      data,
       purrr::map_dfc(pca_domains, ~ .$data)
     )
 
-    pca_domains_clean <- purrr::map(
+    pca_domains_lean <- purrr::map(
       pca_domains,
       ~ .[c("loadings", "variance")]
     )
 
-    pca_domains_clean$data_merged <- pca_data_merged
+    pca_domains_lean$data_merged <- pca_domains_data
 
-    return(pca_domains_clean)
+    return(pca_domains_lean)
   }
 
   pca_domains
