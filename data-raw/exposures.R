@@ -4,21 +4,21 @@ n <- 1000
 exposures <- tibble::tibble(
   id = seq_len(n),
   # Air pollution
-  NO22010 = rnorm(n, 40, 10),
-  BC2010 = rnorm(n, NO22010 * 0.1, 0.5),
-  PM252010 = rnorm(n, NO22010 * 0.6, 4),
-  O32010w = rnorm(n, 100 - 1 * NO22010, 10),
+  no2 = rnorm(n, 40, 10),
+  bc = rnorm(n, no2 * 0.1, 0.5),
+  pm25 = rnorm(n, no2 * 0.6, 4),
+  o3 = rnorm(n, 100 - 1 * no2, 10),
   # Built environment
-  ndvi_2019_scaled = runif(n, -1, 1),
-  ImpSurf_2015 = runif(n, 0, 1),
-  Dist_water = runif(n, 0, 100),
+  ndvi = runif(n, -1, 1),
+  imperv = runif(n, 0, 1),
+  dist_water = runif(n, 0, 100),
   # Temperature
-  temp_2010_cold = rnorm(n, 10, 3),
-  temp_2010_cold_sd = runif(n, 2, 5),
-  temp_2010_warm = rnorm(n, 25, 8),
-  temp_2010_warm_sd = runif(n, 2, 8),
+  temp_cold_mean = rnorm(n, 10, 3),
+  temp_cold_sd = runif(n, 2, 5),
+  temp_warm_mean = rnorm(n, 25, 8),
+  temp_warm_sd = runif(n, 2, 8),
   # SES
-  ses = rnorm(n, -4 + NO22010 - ndvi_2019_scaled + temp_2010_warm, 5),
+  ses = rnorm(n, -4 + no2 - ndvi + temp_warm_mean, 5),
   ses_std = (ses - mean(ses)) / sd(ses)
 )
 

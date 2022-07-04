@@ -14,8 +14,8 @@ check_data <- function(data) {
   missing_expo_names <- exposure_names_clean[missing_expo_names_idx]
   if (length(missing_expo_names) > 0) {
     stop(
-      "Some exposure variables not found. They should have names: ",
-      exposure_names_clean
+      "Some exposure variables not found. They should have names:\n",
+      paste("-", exposure_names_clean, "\n")
     )
   }
 
@@ -23,6 +23,4 @@ check_data <- function(data) {
   if (complete_cases > 0) {
     stop("Exposure variables must not contain missing values.")
   }
-
-  cli::cli_alert_success("Your data passed all tests. Producing results...")
 }
