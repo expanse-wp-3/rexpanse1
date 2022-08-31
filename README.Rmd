@@ -37,26 +37,26 @@ For illustration, we will load the example data set, `exposures`, included with 
 ```{r data}
 library(rexpanse1)
 
-# Example data set. Use your data instead.
+# Example data set
 data(exposures)
 str(exposures)
 ```
 
 You should use your data instead. Note that exposure variables must be named as in the example data set:
 
-| Variable name    | Original name | Description                          | Year | Version |
-|------------------|---------------|--------------------------------------|------|---------|
-| `no2`            | `NO2FULLt`    | Annual average NO2 concentration     | 2010 | Pilot   |
-| `pm25`           |               | Annual average PM2.5 concentration   | 2010 | Pilot   |
-| `bc`             |               | Annual average BC concentration      | 2010 | Pilot   |
-| `o3`             |               | Warm season average O3 concentration | 2010 | Pilot   |
-| `ndvi`           |               | NDVI                                 | 2019 | Pilot   |
-| `imperv`         |               | Percentage of impervious surfaces    |      | Pilot   |
-| `dist_water`     |               | Distance to water (km)               |      | Pilot   |
-| `temp_cold_mean` |               |                                      |      |         |
-| `temp_cold_sd`   |               |                                      |      |         |
-| `temp_warm_mean` |               |                                      |      |         |
-| `temp_warm_sd`   |               |                                      |      |         |
+| Variable name    | Original name | Domain            | Description                          | Year | Version |
+|------------------|---------------|-------------------|--------------------------------------|------|---------|
+| `no2`            | `NO2FULLt`    | Air pollution     | Annual average NO2 concentration     | 2010 | Pilot   |
+| `pm25`           |               | Air pollution     | Annual average PM2.5 concentration   | 2010 | Pilot   |
+| `bc`             |               | Air pollution     | Annual average BC concentration      | 2010 | Pilot   |
+| `o3`             |               | Air pollution     | Warm season average O3 concentration | 2010 | Pilot   |
+| `ndvi`           |               | Built environment | NDVI                                 | 2019 | Pilot   |
+| `imperv`         |               | Built environment | Percentage of impervious surfaces    |      | Pilot   |
+| `dist_water`     |               | Built environment | Distance to water (km)               |      | Pilot   |
+| `temp_cold_mean` |               |                   |                                      |      |         |
+| `temp_cold_sd`   |               |                   |                                      |      |         |
+| `temp_warm_mean` |               |                   |                                      |      |         |
+| `temp_warm_sd`   |               |                   |                                      |      |         |
 
 ### Quantiles
 
@@ -68,8 +68,28 @@ expo_quantiles <- get_quantiles(data = exposures, write = FALSE)
 
 ### PCA
 
-Principal component analysis *summary* by domain:
+Get a *summary* (PC loadings and variance explained) of the principal component analysis by domain:
 
 ```{r}
 pca_summary <- get_pca(data = exposures, summary = TRUE)
+str(pca_summary)
+```
+
+Get the PCA summary as above, as well as the actual principal component values attached to the original exposures data frame.
+
+```{r}
+pca_full <- get_pca(data = exposures, summary = FALSE)
+str(pca_full)
+```
+
+### Associations with SES variable
+
+We can obtain the coeficient estimates from a linear regression with a principal component as outcome and the categorical SES variable as predictor with:
+
+```{r}
+ses_fit <- fit_pc_model(
+  data = pca_full$data_merged,
+  pc_var = "pc1_air",
+  ses_var = "ses_cat"
+)
 ```
