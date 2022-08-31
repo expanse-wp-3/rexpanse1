@@ -16,8 +16,17 @@ Checks if the data is appropriate for subsequent analysis.
 Checks for missing variables, missing values in exposure variables, ...
 }
 \examples{
-data(exposures)
-check_data(exposures)
+library(dplyr)
+data(expanse)
+check_data(expanse)
+
+expanse_invalid_column <- expanse \%>\%
+  rename(no2_2010_annual = no2)
+try(check_data(expanse_invalid_column))
+
+expanse_missing <- expanse \%>\%
+  mutate(ndvi = ifelse(ndvi < 1, NA, ndvi))
+try(check_data(expanse_missing))
 }
 \author{
 Sergio Olmos
