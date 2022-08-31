@@ -1,7 +1,7 @@
-# Example exposure data set
+# Example data set
 set.seed(124)
 n <- 1000
-exposures <- tibble::tibble(
+expanse <- tibble::tibble(
   id = seq_len(n),
   # Air pollution
   no2 = rnorm(n, 40, 10),
@@ -19,7 +19,10 @@ exposures <- tibble::tibble(
   temp_warm_sd = runif(n, 2, 8),
   # SES
   ses = rnorm(n, -4 + no2 - ndvi + temp_warm_mean, 5),
-  ses_std = (ses - mean(ses)) / sd(ses)
+  ses_std = (ses - mean(ses)) / sd(ses),
+  ses_cat = cut(ses, breaks = 3, labels = c("low", "medium", "high")),
+  # Other vars
+  pop_density = runif(n, 0, 1)
 )
 
-usethis::use_data(exposures, overwrite = TRUE)
+usethis::use_data(expanse, overwrite = TRUE)
