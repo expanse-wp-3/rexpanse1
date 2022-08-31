@@ -33,8 +33,8 @@ variables with the agreed variable names:
 }
 }
 \examples{
-data(exposures)
-get_quantiles(exposures)
+data(expanse)
+get_quantiles(expanse)
 }
 \author{
 Sergio Olmos

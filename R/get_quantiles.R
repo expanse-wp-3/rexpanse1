@@ -19,8 +19,8 @@
 ##' @author Sergio Olmos
 ##' @export
 ##' @examples
-##' data(exposures)
-##' get_quantiles(exposures)
+##' data(expanse)
+##' get_quantiles(expanse)
 get_quantiles <- function(data) {
   exposures_only <- data[exposure_names_clean]
 
