@@ -92,12 +92,12 @@ catalonia_pca <- run_pca(
   output_dir = my_results_dir
 )
 #> 
-#> ── Running analysis pipeline with rexpanse1 version 0.0.0.9000 ──────────────────────────────────────────
+#> ── Running analysis pipeline with rexpanse1 version 0.0.0.9000 ───────────────────────────────────────────
 #> → Checking data...
 #> → Computing exposure quantiles...
 #> → Computing PCA...
 #> → Fitting PC ~ SES models...
-#> → Writing results to /tmp/RtmpO7XdTZ/catalonia_results.rds
+#> → Writing results to /tmp/RtmpRKtLP1/catalonia_results.rds
 ```
 
 Note that you may get some warnings informing you that some of the
@@ -114,9 +114,13 @@ Note that when `write = TRUE`, you need to specify an appropriate
 directory (folder) path to `output_dir`. The defult directory is the
 current working directory.
 
+### Details
+
 `run_pca()` returns a list with the following elements.
 
 #### Cohort name
+
+The cohort name specified:
 
 ``` r
 catalonia_pca$cohort
@@ -124,6 +128,8 @@ catalonia_pca$cohort
 ```
 
 #### Exposure quantiles
+
+A set of quantiles of the exposure variables:
 
 ``` r
 catalonia_pca$quantiles
@@ -143,6 +149,8 @@ catalonia_pca$quantiles
 
 #### PCA by domain summary
 
+A summary of the PCA by domain in long format for easy plotting.
+
 ``` r
 head(catalonia_pca$pca_summary)
 #> # A tibble: 6 × 9
@@ -159,6 +167,11 @@ head(catalonia_pca$pca_summary)
 
 #### Associations with SES
 
+The estimated coefficients for the linear models with each principal
+component as outcome and the SES variable supplied to `ses_var`. There
+is an option to include more variables using the `other_vars` argument
+in `run_pca()`.
+
 ``` r
 head(catalonia_pca$pc_ses_models)
 #> # A tibble: 6 × 11
@@ -174,6 +187,9 @@ head(catalonia_pca$pc_ses_models)
 ```
 
 #### Package version
+
+The version of the rexpanse1 package that was used to produce the
+results.
 
 ``` r
 catalonia_pca$package_version
