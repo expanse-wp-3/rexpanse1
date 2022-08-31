@@ -92,9 +92,13 @@ You should pass your data frame formatted as decribed in the previous section.
 
 Note that when `write = TRUE`, you need to specify an appropriate directory (folder) path to `output_dir`. The defult directory is the current working directory.
 
+### Details
+
 `run_pca()` returns a list with the following elements.
 
 #### Cohort name
+
+The cohort name specified:
 
 ```{r}
 catalonia_pca$cohort
@@ -102,11 +106,15 @@ catalonia_pca$cohort
 
 #### Exposure quantiles
 
+A set of quantiles of the exposure variables:
+
 ```{r}
 catalonia_pca$quantiles
 ```
 
 #### PCA by domain summary
+
+A summary of the PCA by domain in long format for easy plotting.
 
 ```{r}
 head(catalonia_pca$pca_summary)
@@ -114,11 +122,15 @@ head(catalonia_pca$pca_summary)
 
 #### Associations with SES
 
+The estimated coefficients for the linear models with each principal component as outcome and the SES variable supplied to `ses_var`. There is an option to include more variables using the `other_vars` argument in `run_pca()`.
+
 ```{r}
 head(catalonia_pca$pc_ses_models)
 ```
 
 #### Package version
+
+The version of the rexpanse1 package that was used to produce the results.
 
 ```{r}
 catalonia_pca$package_version
