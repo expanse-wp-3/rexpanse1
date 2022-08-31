@@ -14,7 +14,10 @@ different domains.}
 a summary of the PCA should be returned. See Details.}
 }
 \value{
-
+A list containing a summary of the PCA, the actual principal component
+values together with the variables used, and a table identifying the
+correction factor of each principal component for standardizing
+the interpretation across cohorts.
 }
 \description{
 Computes principal component analysis for all domains.
@@ -23,8 +26,8 @@ Computes principal component analysis for all domains.
 The domains are overall, air pollution, built environment and temperature.
 }
 \examples{
-data(exposures)
-get_pca_domains(exposures)
+data(expanse)
+get_pca_domains(expanse)
 }
 \author{
 Sergio Olmos
