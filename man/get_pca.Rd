@@ -4,13 +4,17 @@
 \alias{get_pca}
 \title{Compute principal component analysis}
 \usage{
-get_pca(data, summary = TRUE, suffix)
+get_pca(data, summary = TRUE, long = TRUE, suffix)
 }
 \arguments{
 \item{data}{Data frame with only the variables to be included in the PCA.}
 
 \item{summary}{Logical vector of length one indicating whether only
 a summary of the PCA should be returned. See Details.}
+
+\item{long}{Logical vector of length one indicating whether the PCA summary
+should be returned as a matrix as returned by stats::prcomp() or be
+be transformed into a long format. See details.}
 
 \item{suffix}{A character vector of length one with the suffix to
 to be appended to the principal component variable names.}
@@ -24,16 +28,19 @@ Computes principal components for all variables in the passed data frame.
 \details{
 If \code{summary = TRUE} (default), the returned list will have elements
 \code{loadings} and \code{variance}, with the loadings and variance explained
-of theprincipal components.
+of theprincipal components, but the actual values of each row of the
+data set will not be included.
 If \code{summary = FALSE}, an element \code{data} will be included in the
 returned list, containing a data frame with the values of the
 principal components for each observation in \code{data},
 together with all the variables in the original data.
+If \code{long = TRUE} (default) the summary output of the PCA is returned
+as a tidy tibble.
 }
 \examples{
-data(exposures, package = "rexpanse1")
-exposures_air <- exposures[c("no2", "pm25", "bc", "o3")]
-get_pca(exposures_air, summary = FALSE, suffix = "air")
+data(expanse, package = "rexpanse1")
+exposures_air <- expanse[c("no2", "pm25", "bc", "o3")]
+get_pca(exposures_air, summary = FALSE, long = TRUE, suffix = "air")
 }
 \author{
 Sergio Olmos
