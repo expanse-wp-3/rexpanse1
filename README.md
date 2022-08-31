@@ -57,19 +57,19 @@ For producing results for your cohort you should use your data instead.
 > **Important**: Note that exposure variables must be named as in the
 > example data set and as shown below.
 
-| Variable name    | Original name | Domain            | Description                          | Year | Version |
-| ---------------- | ------------- | ----------------- | ------------------------------------ | ---- | ------- |
-| `no2`            | `NO2FULLt`    | Air pollution     | Annual average NO2 concentration     | 2010 | Pilot   |
-| `pm25`           |               | Air pollution     | Annual average PM2.5 concentration   | 2010 | Pilot   |
-| `bc`             |               | Air pollution     | Annual average BC concentration      | 2010 | Pilot   |
-| `o3`             |               | Air pollution     | Warm season average O3 concentration | 2010 | Pilot   |
-| `ndvi`           |               | Built environment | NDVI                                 | 2019 | Pilot   |
-| `imperv`         |               | Built environment | Percentage of impervious surfaces    |      | Pilot   |
-| `dist_water`     |               | Built environment | Distance to water (km)               |      | Pilot   |
-| `temp_cold_mean` |               |                   |                                      |      |         |
-| `temp_cold_sd`   |               |                   |                                      |      |         |
-| `temp_warm_mean` |               |                   |                                      |      |         |
-| `temp_warm_sd`   |               |                   |                                      |      |         |
+| Variable name    | Original WP1 name   | Description                                          | Year | Version |
+| ---------------- | ------------------- | ---------------------------------------------------- | ---- | ------- |
+| `no2`            | `NO22010`           | Annual average NO2 concentration                     | 2010 | 1       |
+| `pm25`           | `PM252010`          | Annual average PM2.5 concentration                   | 2010 | 1       |
+| `bc`             | `BC2010`            | Annual average BC concentration                      | 2010 | 1       |
+| `o3`             | `O32010w`           | Warm season average O3 concentration                 | 2010 | 1       |
+| `ndvi`           | `ndvi_2019`         | NDVI                                                 | 2019 | 1       |
+| `imperv`         | `ImpSurf_2015`      | Percentage of impervious surfaces                    | 2015 | 1       |
+| `dist_water`     | `Dist_water`        | Distance to water (km)                               |      | 1       |
+| `temp_cold_mean` | `temp_2010_cold`    | Mean temperature during warm season (May-October)    | 2010 | 1       |
+| `temp_cold_sd`   | `temp_2010_cold_sd` | Temperature standard deviation during warm season    | 2010 | 1       |
+| `temp_warm_mean` | `temp_2010_warm`    | Mean temperature during cold season (November-April) | 2010 | 1       |
+| `temp_warm_sd`   | `temp_2010_warm_sd` | Temperature standard deviation during cold season    | 2010 | 1       |
 
 ### Results
 
@@ -97,7 +97,7 @@ catalonia_pca <- run_pca(
 #> → Computing exposure quantiles...
 #> → Computing PCA...
 #> → Fitting PC ~ SES models...
-#> → Writing results to /tmp/RtmpRKtLP1/catalonia_results.rds
+#> → Writing results to /tmp/Rtmpv6csWR/catalonia_results.rds
 ```
 
 Note that you may get some warnings informing you that some of the
