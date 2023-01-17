@@ -22,6 +22,7 @@
 ##' data(expanse)
 ##' get_quantiles(expanse)
 get_quantiles <- function(data) {
+  
   exposures_only <- data[exposure_names_clean]
 
   quantile_matrix <- apply(

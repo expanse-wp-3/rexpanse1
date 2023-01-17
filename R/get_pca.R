@@ -27,6 +27,7 @@
 ##' exposures_air <- expanse[c("no2", "pm25", "bc", "o3")]
 ##' get_pca(exposures_air, summary = FALSE, long = TRUE, suffix = "air")
 get_pca <- function(data, summary = TRUE, long = TRUE, suffix) {
+  
   pca <- stats::prcomp(data, center = TRUE, scale. = TRUE)
   pca_loadings <- pca$rotation
   pca_variance <- summary(pca)$importance

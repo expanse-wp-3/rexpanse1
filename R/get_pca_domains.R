@@ -18,14 +18,11 @@
 ##' get_pca_domains(expanse)
 get_pca_domains <- function(data,
                             summary = TRUE) {
-  air_vars <- c("no2", "pm25", "bc", "o3")
-  built_vars <- c("ndvi", "imperv", "dist_water")
-  temp_vars <- c(
-    "temp_warm_mean",
-    "temp_warm_sd",
-    "temp_cold_mean",
-    "temp_cold_sd"
-  )
+                              
+  air_vars <- exposure_names_clean[1:4]
+  built_vars <- exposure_names_clean[5:7]
+  temp_vars <- exposure_names_clean[8:11]
+
   pca_domains <- list(
     overall = get_pca(
       data = data[c(air_vars, built_vars, temp_vars)],
@@ -33,9 +30,27 @@ get_pca_domains <- function(data,
       long = TRUE,
       suffix = "overall"
     ),
-    air = get_pca(data[air_vars], summary = summary, long = TRUE, suffix = "air"),
-    built = get_pca(data[built_vars], summary, TRUE, "built"),
-    temp = get_pca(data[temp_vars], summary, TRUE, "temp")
+
+    air = get_pca(
+      data[air_vars],
+      summary = summary,
+      long = TRUE,
+      suffix = "air"
+    ),
+
+    built = get_pca(
+      data[built_vars],
+      summary,
+      TRUE,
+      "built"
+    ),
+
+    temp = get_pca(
+      data[temp_vars],
+      summary,
+      TRUE,
+      "temp"
+    )
   )
 
   pca_summary <- purrr::map_df(pca_domains, ~.$summary, .id = "domain")
@@ -44,8 +59,12 @@ get_pca_domains <- function(data,
   # so we always transform the PCs to have positive loading for NO2 and NDVI.
   # We include a data frame with the correction factor (1 or -1) that needs
   # to be applied to each principal component for this standardization.
+
   pc_correction <- pca_summary %>%
-    dplyr::group_by(.data$domain, .data$pc) %>%
+    dplyr::group_by(
+      .data$domain, 
+      .data$pc
+    ) %>%
     dplyr::summarise(
       is_negative_loading = sum(.data$var %in% c("no2", "ndvi") & .data$loading < 0) > 0
     ) %>%

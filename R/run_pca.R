@@ -41,7 +41,7 @@ run_pca <- function(data,
   cli::cli_h1("Running analysis pipeline with rexpanse1 version {rexpanse1_version}")
 
 
-  cli::cli_alert(variable_new)
+  # cli::cli_alert(variable_new)
 
   cli::cli_alert("Checking data...")
   check_data(data)
@@ -58,30 +58,92 @@ run_pca <- function(data,
 
   # TODO Add modeling of SES
   cli::cli_alert("Fitting PC ~ SES models...")
+
   pc_names <- colnames(pca$data)[grep("^pc[0-9]+_[a-z]+$", colnames(pca$data))]
-  if (missing(other_vars)) {
-    pc_models <- purrr::map_df(
-      pc_names,
-      function(x) {
-        fit_pc_model(pca, pc_var = x, ses_var = ses_var)
-      }
+
+  if(length(ses_var) == 1){ 
+
+    if (missing(other_vars)) {
+
+      pc_models <- purrr::map_df(
+        pc_names,
+        function(x) {
+          fit_pc_model(pca, pc_var = x, ses_var = ses_var[1])
+        }
+      )
+    } else {
+      pc_models <- purrr::map_df(
+        pc_names,
+        function(x) {
+          fit_pc_model(pca, pc_var = x, ses_var = ses_var[1], other_vars = other_vars)
+        }
+      )
+    }
+
+    results <- list(
+      cohort = cohort_name,
+      quantiles = expo_quantiles,
+      pca_summary = pca$summary,
+      pc_ses_models = pc_models,
+      package_version = paste0("rexpanse1-", rexpanse1_version)
     )
+  } else if (length(ses_var) == 2) {
+
+    if (missing(other_vars)) {
+
+      pc_models_1 <- purrr::map_df(
+        pc_names,
+        function(x) {
+          fit_pc_model(pca, pc_var = x, ses_var = ses_var[1])
+        }
+      )
+
+      pc_models_2 <- purrr::map_df(
+        pc_names,
+        function(x) {
+          fit_pc_model(pca, pc_var = x, ses_var = ses_var[2])
+        }
+      )
+
+    } else {
+
+      pc_models_1 <- purrr::map_df(
+        pc_names,
+        function(x) {
+          fit_pc_model(pca, pc_var = x, ses_var = ses_var[1], other_vars = other_vars)
+        }
+      )
+
+      pc_models_2 <- purrr::map_df(
+        pc_names,
+        function(x) {
+          fit_pc_model(pca, pc_var = x, ses_var = ses_var[2], other_vars = other_vars)
+        }
+      )
+    }
+
+    results <- list(
+      cohort = cohort_name,
+      quantiles = expo_quantiles,
+      pca_summary = pca$summary,
+      pc_ses_models_1 = pc_models_1,
+      pc_ses_models_2 = pc_models_2,
+      package_version = paste0("rexpanse1-", rexpanse1_version)
+    )
+
   } else {
-    pc_models <- purrr::map_df(
-      pc_names,
-      function(x) {
-        fit_pc_model(pca, pc_var = x, ses_var = ses_var, other_vars = other_vars)
-      }
+
+    cli::cli_alert("Imposible modelling... Check the numer of SES inside the vector (MAX 2)")
+
+    results <- list(
+      cohort = cohort_name,
+      quantiles = expo_quantiles,
+      pca_summary = pca$summary,
+      pc_ses_models_1 = NULL,
+      package_version = paste0("rexpanse1-", rexpanse1_version)
     )
   }
-
-  results <- list(
-    cohort = cohort_name,
-    quantiles = expo_quantiles,
-    pca_summary = pca$summary,
-    pc_ses_models = pc_models,
-    package_version = paste0("rexpanse1-", rexpanse1_version)
-  )
+  
 
   if (write) {
     file_name <- paste0(cohort_name, "_results.rds")
