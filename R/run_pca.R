@@ -40,6 +40,7 @@ run_pca <- function(data,
 
   cli::cli_h1("Running analysis pipeline with rexpanse1 version {rexpanse1_version}")
 
+
   cli::cli_alert(variable_new)
 
   cli::cli_alert("Checking data...")
