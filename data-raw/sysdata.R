@@ -4,4 +4,6 @@ exposure_names_clean <- c(
   "temp_warm_mean", "temp_warm_sd", "temp_cold_mean", "temp_cold_sd"
 )
 
-usethis::use_data(exposure_names_clean, overwrite = TRUE, internal = TRUE)
+variable_new <- "xds - soy neww"
+
+usethis::use_data(exposure_names_clean, variable_new, overwrite = TRUE, internal = TRUE)

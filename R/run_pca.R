@@ -35,8 +35,12 @@ run_pca <- function(data,
                     cohort_name,
                     write = TRUE,
                     output_dir = ".") {
+
   rexpanse1_version <- utils::packageVersion("rexpanse1")
+
   cli::cli_h1("Running analysis pipeline with rexpanse1 version {rexpanse1_version}")
+
+  cli::cli_alert(variable_new)
 
   cli::cli_alert("Checking data...")
   check_data(data)
