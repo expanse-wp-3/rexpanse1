@@ -2,8 +2,8 @@
 ##'
 ##' @title Run full analysis pipeline
 ##' @param data Data frame containing all exposures
-##' @param ses_var Charcater vector of length one indicating the name of
-##'   the SES variable in `data` which will be used as a predictor when looking
+##' @param ses_var Charcater vector of length one or two indicating the name of
+##'   the SES variable (individual, and by region) in `data` which will be used as a predictor when looking
 ##'   at the association with the principal components.
 ##' @param other_vars Character vector indicating the names of any other
 ##'   variables in `data` that need to be included as covariates in the
