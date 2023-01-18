@@ -29,6 +29,16 @@
 ##'   write = TRUE,
 ##'   output_dir = results_dir
 ##' )
+##'
+##' results_dir <- tempdir()
+##' run_pca(
+##'   data = expanse,
+##'   ses_var = c("ses_cat_inv", "ses_cat_reg"),
+##'   cohort_name = "catalonia",
+##'   write = TRUE,
+##'   output_dir = results_dir
+##' )
+
 run_pca <- function(data,
                     ses_var,
                     other_vars,

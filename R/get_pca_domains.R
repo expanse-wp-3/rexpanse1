@@ -18,7 +18,7 @@
 ##' get_pca_domains(expanse)
 get_pca_domains <- function(data,
                             summary = TRUE) {
-                              
+
   air_vars <- exposure_names_clean[1:4]
   built_vars <- exposure_names_clean[5:7]
   temp_vars <- exposure_names_clean[8:11]
