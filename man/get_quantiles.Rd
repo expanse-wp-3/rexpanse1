@@ -19,17 +19,17 @@ Computes exposure quantiles for making exposure boxplots.
 The data frame passed to \code{data} should contain the eleven exposure
 variables with the agreed variable names:
 \itemize{
-\item no2
-\item pm25
-\item bc
-\item o3
-\item ndvi
-\item imperv
-\item dist_water
-\item temp_warm_mean
-\item temp_warm_sd
-\item temp_cold_mean
-\item temp_cold_mean
+\item NO22010
+\item PM252010
+\item BC2010
+\item O32010w
+\item ndvi_2019
+\item ImpSurf_2015
+\item Dist_water
+\item temp_2010_warm
+\item temp_2010_warm_sd
+\item temp_2010_cold
+\item temp_2010_cold_sd
 }
 }
 \examples{

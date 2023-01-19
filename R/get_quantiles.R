@@ -2,17 +2,17 @@
 ##'
 ##' The data frame passed to `data` should contain the eleven exposure
 ##' variables with the agreed variable names:
-##' - no2
-##' - pm25
-##' - bc
-##' - o3
-##' - ndvi
-##' - imperv
-##' - dist_water
-##' - temp_warm_mean
-##' - temp_warm_sd
-##' - temp_cold_mean
-##' - temp_cold_mean
+##' - NO22010
+##' - PM252010
+##' - BC2010
+##' - O32010w
+##' - ndvi_2019
+##' - ImpSurf_2015
+##' - Dist_water
+##' - temp_2010_warm
+##' - temp_2010_warm_sd
+##' - temp_2010_cold
+##' - temp_2010_cold_sd
 ##' @title Compute exposure quantiles
 ##' @param data Data frame containing the exposures of interest. See Details.
 ##' @return A matrix with quantiles (rows) for each exposure (columns).

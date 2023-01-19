@@ -66,7 +66,7 @@ get_pca_domains <- function(data,
       .data$pc
     ) %>%
     dplyr::summarise(
-      is_negative_loading = sum(.data$var %in% c("no2", "ndvi") & .data$loading < 0) > 0
+      is_negative_loading = sum(.data$var %in% c("NO22010", "ndvi_2019") & .data$loading < 0) > 0
     ) %>%
     dplyr::mutate(correction_factor = ifelse(.data$is_negative_loading, -1, 1)) %>%
     dplyr::select(-.data$is_negative_loading)
