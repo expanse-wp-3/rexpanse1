@@ -4,4 +4,12 @@ exposure_names_clean <- c(
   "temp_2010_warm", "temp_2010_warm_sd", "temp_2010_cold", "temp_2010_cold_sd"
 )
 
-usethis::use_data(exposure_names_clean, variable_new, overwrite = TRUE, internal = TRUE)
+ses_var_clean <- c("ses_cat_indv", "ses_cat_area")
+
+ses_var_factor_clean <- c("Low", "Middle", "High")
+
+usethis::use_data(exposure_names_clean,
+  ses_var_clean, 
+  ses_var_factor_clean, 
+  overwrite = TRUE, 
+  internal = TRUE)

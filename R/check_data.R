@@ -21,6 +21,10 @@
 ##' try(check_data(expanse_missing))
 check_data <- function(data) {
 
+  ################
+  # Exposures part 
+  ################
+
   missing_expo_names_idx <- !exposure_names_clean %in% colnames(data)
 
   missing_expo_names <- exposure_names_clean[missing_expo_names_idx]
@@ -32,9 +36,64 @@ check_data <- function(data) {
     )
   }
 
+  ################
+  # ses part 
+  ################
+
+  missing_ses_names_idx <- !ses_var_clean %in% colnames(data)
+
+  missing_ses_names <- ses_var_clean[missing_expo_names_idx]
+
+  if (length(missing_ses_names) > 0) {
+    stop(
+      "Some SES variables not found. They should have names:\n",
+      paste("-", ses_var_clean, "\n")
+    )
+  }
+
+  ################
+  # ses part 2 - confirm the factor order. 
+  ################
+
+  missing_ses_factor_indv_id <- !ses_var_factor_clean %in% levels(data$ses_cat_indv)
+
+  missing_ses_factor_indv_names <- ses_var_factor_clean[missing_ses_factor_indv_id]
+
+  if (length(missing_ses_factor_indv_names) > 0) {
+    stop(
+      "Some SES factor for individual level not found. They should have names:\n",
+      paste("-", ses_var_factor_clean, "\n")
+    )
+  } else {
+
+    data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
+
+  }
+  
+  # Area level 
+
+  missing_ses_factor_area_id <- !ses_var_factor_clean %in% levels(data$ses_cat_area)
+
+  missing_ses_factor_area_names <- ses_var_factor_clean[missing_ses_factor_area_id]
+
+  if (length(missing_ses_factor_area_names) > 0) {
+    stop(
+      "Some SES factor for area level not found. They should have names:\n",
+      paste("-", ses_var_factor_clean, "\n")
+    )
+  } else {
+
+    data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
+
+  }
+
+  ################
+  # complete cases part
+  ################  
+
   complete_cases <- sum(!stats::complete.cases(data[exposure_names_clean]))
   if (complete_cases > 0) {
-    stop("Exposure variables must not contain missing values.")
+    stop("Exposure or ses variables must not contain missing values.")
   }
   
 }

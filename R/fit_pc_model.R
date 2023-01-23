@@ -19,7 +19,7 @@
 fit_pc_model <- function(pca, pc_var, ses_var, other_vars) {
 
   stopifnot(is.character(pc_var) & length(pc_var) == 1)
-  stopifnot(is.character(ses_var) & length(ses_var == 1))
+  stopifnot(is.character(ses_var) & length(ses_var) == 1)
 
   ## We need to check whether the principal component needs to be transformed
   ## by a factor of -1.
