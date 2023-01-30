@@ -45,47 +45,56 @@ check_data <- function(data) {
   missing_ses_names <- ses_var_clean[missing_expo_names_idx]
 
   if (length(missing_ses_names) > 0) {
-    stop(
-      "Some SES variables not found. They should have names:\n",
-      paste("-", ses_var_clean, "\n")
+    warning(
+      paste(
+      "Some SES variables not found. They should have names: - warning, it still working\n",
+      paste("-", ses_var_factor_clean, "\n"), sep = "")
     )
+
   }
 
   ################
   # ses part 2 - confirm the factor order. 
   ################
+  if(sum("ses_cat_indv" %in% missing_ses_names)>= 1) {
+    warning("not individual variable - ses_cat_indv")
+  } else {
+  
+  data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
 
   missing_ses_factor_indv_id <- !ses_var_factor_clean %in% levels(data$ses_cat_indv)
 
   missing_ses_factor_indv_names <- ses_var_factor_clean[missing_ses_factor_indv_id]
 
   if (length(missing_ses_factor_indv_names) > 0) {
-    stop(
+    warning(
+      paste(
       "Some SES factor for individual level not found. They should have names:\n",
-      paste("-", ses_var_factor_clean, "\n")
+      paste("-", ses_var_factor_clean, "\n"), sep = "")
     )
-  } else {
-
-    data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
-
   }
+  }
+
   
   # Area level 
+  if(sum("ses_cat_area" %in% missing_ses_names)>= 1) {
+    warning("not area variable - ses_cat_area")
+  } else { 
+  data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
 
   missing_ses_factor_area_id <- !ses_var_factor_clean %in% levels(data$ses_cat_area)
 
   missing_ses_factor_area_names <- ses_var_factor_clean[missing_ses_factor_area_id]
 
   if (length(missing_ses_factor_area_names) > 0) {
-    stop(
+    warning(
+      paste(
       "Some SES factor for area level not found. They should have names:\n",
-      paste("-", ses_var_factor_clean, "\n")
+      paste("-", ses_var_factor_clean, "\n"), sep = "")
     )
-  } else {
-
-    data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
-
   }
+  }
+
 
   ################
   # complete cases part
