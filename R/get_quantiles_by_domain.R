@@ -26,7 +26,7 @@
 get_quantiles_by_domain <- function(data, domain) {
 
 general <- data %>%
-  select(exposure_names_clean)
+  dplyr::select(exposure_names_clean)
 
 a <- data %>% 
   filter(get(domain[1]) == "Low") %>%
@@ -42,18 +42,18 @@ c <- data %>%
 
 
 quantiles_by_ses <- list(
-    overall = list(summary = get_quantiles(general) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(test)) ),
+    overall = list(summary = get_quantiles(general) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(.)) ),
 
-    low = list(summary = get_quantiles(a) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(test)) ) ,
+    low = list(summary = get_quantiles(a) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(.)) ) ,
 
-    middle = list(summary = get_quantiles(b) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(test)) ),
+    middle = list(summary = get_quantiles(b) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(.)) ),
 
-    high = list(summary = get_quantiles(c) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(test)) )
+    high = list(summary = get_quantiles(c) %>% as.data.frame()  %>% mutate(quantile_id =  rownames(.)) )
   )
 
 
 
-quantiles_by_ses$overall$summary %>% View()
+# quantiles_by_ses$overall$summary %>% View()
 
 quant <- purrr::map_df(quantiles_by_ses, ~.$summary, .id = "domain")
 

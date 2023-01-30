@@ -75,14 +75,14 @@ run_pca <- function(data,
 
     if (missing(other_vars)) {
 
-      pc_models <- purrr::map_df(
+      pc_models_1 <- purrr::map_df(
         pc_names,
         function(x) {
           fit_pc_model(pca, pc_var = x, ses_var = ses_var[1])
         }
       )
     } else {
-      pc_models <- purrr::map_df(
+      pc_models_1 <- purrr::map_df(
         pc_names,
         function(x) {
           fit_pc_model(pca, pc_var = x, ses_var = ses_var[1], other_vars = other_vars)
@@ -90,11 +90,15 @@ run_pca <- function(data,
       )
     }
 
+    ses_quantile <- get_quantiles_by_domain(data, ses_var[1])
+
     results <- list(
       cohort = cohort_name,
       quantiles = expo_quantiles,
+      ses_information = ses_var[1],
+      ses_quantiles_1 = ses_quantile,
       pca_summary = pca$summary,
-      pc_ses_models = pc_models,
+      pc_ses_models_1 = pc_models_1,
       package_version = paste0("rexpanse1-", rexpanse1_version)
     )
   } else if (length(ses_var) == 2) {
@@ -132,9 +136,15 @@ run_pca <- function(data,
       )
     }
 
+    ses_quantile_1 <- get_quantiles_by_domain(data, ses_var[1])
+    ses_quantile_2 <- get_quantiles_by_domain(data, ses_var[2])
+
     results <- list(
       cohort = cohort_name,
       quantiles = expo_quantiles,
+      ses_information = c(ses_var[1], ses_var[2]),
+      ses_quantiles_1 = ses_quantile_1,
+      ses_quantiles_2 = ses_quantile_2,
       pca_summary = pca$summary,
       pc_ses_models_1 = pc_models_1,
       pc_ses_models_2 = pc_models_2,
@@ -148,6 +158,8 @@ run_pca <- function(data,
     results <- list(
       cohort = cohort_name,
       quantiles = expo_quantiles,
+      ses_information = "no ses",
+      ses_quantiles = NULL,
       pca_summary = pca$summary,
       pc_ses_models_1 = NULL,
       package_version = paste0("rexpanse1-", rexpanse1_version)
