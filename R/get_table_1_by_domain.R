@@ -11,7 +11,7 @@
 ##' @return A list containing a summary of Age variable
 ##'   Number of individuos 
 ##'   Proportion of Indv. by SES.
-##'   .
+##'   
 ##' @author Fabian Coloma
 ##'
 ##' @export
