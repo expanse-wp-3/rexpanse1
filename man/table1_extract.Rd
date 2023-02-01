@@ -19,7 +19,6 @@ this vector can be NULL.}
 A list containing a summary of Age variable
 Number of individuos
 Proportion of Indv. by SES.
-.
 }
 \description{
 Computes table 1 - summary of principal data

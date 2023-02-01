@@ -40,9 +40,9 @@
 ##' )
 
 run_pca <- function(data,
-                    ses_var,
-                    age_var,
-                    other_vars,
+                    ses_var = NULL,
+                    age_var = NULL,
+                    other_vars = NULL,
                     cohort_name,
                     write = TRUE,
                     output_dir = ".") {
