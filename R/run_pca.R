@@ -41,6 +41,7 @@
 
 run_pca <- function(data,
                     ses_var,
+                    age_var,
                     other_vars,
                     cohort_name,
                     write = TRUE,
@@ -59,6 +60,10 @@ run_pca <- function(data,
   if (!missing(other_vars)) {
     data <- data[c(exposure_names_clean, ses_var, other_vars)]
   }
+
+  cli::cli_alert("Computing table 1...")
+
+  table_1result <- table1_extract(data, ses_var = ses_var, age_var = age_var)
 
   cli::cli_alert("Computing exposure quantiles...")
   expo_quantiles <- get_quantiles(data[exposure_names_clean])
@@ -94,6 +99,7 @@ run_pca <- function(data,
 
     results <- list(
       cohort = cohort_name,
+      table_1 = table_1result,
       quantiles = expo_quantiles,
       ses_information = ses_var[1],
       ses_quantiles_1 = ses_quantile,
@@ -141,6 +147,7 @@ run_pca <- function(data,
 
     results <- list(
       cohort = cohort_name,
+      table_1 = table_1result,
       quantiles = expo_quantiles,
       ses_information = c(ses_var[1], ses_var[2]),
       ses_quantiles_1 = ses_quantile_1,
@@ -157,6 +164,7 @@ run_pca <- function(data,
 
     results <- list(
       cohort = cohort_name,
+      table_1 = table_1result,
       quantiles = expo_quantiles,
       ses_information = "no ses",
       ses_quantiles = NULL,

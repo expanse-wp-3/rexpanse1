@@ -4,7 +4,15 @@
 \alias{run_pca}
 \title{Run full analysis pipeline}
 \usage{
-run_pca(data, ses_var, other_vars, cohort_name, write = TRUE, output_dir = ".")
+run_pca(
+  data,
+  ses_var,
+  age_var,
+  other_vars,
+  cohort_name,
+  write = TRUE,
+  output_dir = "."
+)
 }
 \arguments{
 \item{data}{Data frame containing all exposures}
