@@ -5,6 +5,7 @@
 ##' @param ses_var Charcater vector of length one or two indicating the name of
 ##'   the SES variable (individual, and by region) in `data` which will be used as a predictor when looking
 ##'   at the association with the principal components.
+##' @param age_var character indicating the name of Age at baseline variable as numeric.
 ##' @param other_vars Character vector indicating the names of any other
 ##'   variables in `data` that need to be included as covariates in the
 ##'   models assessing the association between the principal components
@@ -25,6 +26,7 @@
 ##' run_pca(
 ##'   data = expanse,
 ##'   ses_var = "ses_cat",
+##'   age_var = "age",
 ##'   cohort_name = "catalonia",
 ##'   write = TRUE,
 ##'   output_dir = results_dir
@@ -34,6 +36,7 @@
 ##' run_pca(
 ##'   data = expanse,
 ##'   ses_var = c("ses_cat_inv", "ses_cat_reg"),
+##'   age_var = "age",
 ##'   cohort_name = "catalonia",
 ##'   write = TRUE,
 ##'   output_dir = results_dir
