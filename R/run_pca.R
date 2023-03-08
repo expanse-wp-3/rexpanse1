@@ -44,7 +44,7 @@
 
 run_pca <- function(data,
                     ses_var = NULL,
-                    age_var = NULL,
+                    age_var = "age",
                     other_vars,
                     cohort_name,
                     write = TRUE,
