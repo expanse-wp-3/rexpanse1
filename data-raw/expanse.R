@@ -19,9 +19,9 @@ expanse <- tibble::tibble(
   temp_2010_warm_sd = runif(n, 2, 8),
   # SES
   ses_area = rnorm(n, -4 + NO22010 - ndvi_2019 + temp_2010_warm, 5),
-  ses_cat_area = cut(ses_area, breaks = 3, labels = c("low", "medium", "high")),
+  ses_cat_area = cut(ses_area, breaks = 3, labels = c("Low", "Middle", "High")),
   ses_indv = rnorm(n, -4 + NO22010 - ndvi_2019 + temp_2010_warm, 5),
-  ses_cat_indv = cut(ses_indv, breaks = 3, labels = c("low", "medium", "high")),
+  ses_cat_indv = cut(ses_indv, breaks = 3, labels = c("Low", "Middle", "High")),
   # SES
   age = rnorm(n, 47, 3),
   # Other vars
