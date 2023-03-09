@@ -7,7 +7,7 @@
 run_pca(
   data,
   ses_var = NULL,
-  age_var = NULL,
+  age_var = "age",
   other_vars,
   cohort_name,
   write = TRUE,
@@ -49,7 +49,7 @@ data(expanse)
 results_dir <- tempdir()
 run_pca(
   data = expanse,
-  ses_var = "ses_cat",
+  ses_var = "ses_cat_***",
   age_var = "age",
   cohort_name = "catalonia",
   write = TRUE,
@@ -59,7 +59,7 @@ run_pca(
 results_dir <- tempdir()
 run_pca(
   data = expanse,
-  ses_var = c("ses_cat_inv", "ses_cat_reg"),
+  ses_var = c("ses_cat_inv", "ses_cat_area"),
   age_var = "age",
   cohort_name = "catalonia",
   write = TRUE,

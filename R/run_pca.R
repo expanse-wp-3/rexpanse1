@@ -25,7 +25,7 @@
 ##' results_dir <- tempdir()
 ##' run_pca(
 ##'   data = expanse,
-##'   ses_var = "ses_cat",
+##'   ses_var = "ses_cat_***",
 ##'   age_var = "age",
 ##'   cohort_name = "catalonia",
 ##'   write = TRUE,
@@ -35,7 +35,7 @@
 ##' results_dir <- tempdir()
 ##' run_pca(
 ##'   data = expanse,
-##'   ses_var = c("ses_cat_inv", "ses_cat_reg"),
+##'   ses_var = c("ses_cat_inv", "ses_cat_area"),
 ##'   age_var = "age",
 ##'   cohort_name = "catalonia",
 ##'   write = TRUE,
