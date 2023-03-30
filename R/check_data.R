@@ -45,7 +45,7 @@ check_data <- function(data) {
   missing_ses_names <- ses_var_clean[missing_ses_names_idx]
 
   if (length(missing_ses_names) > 0) {
-    stop(
+    warning(
       paste(
       "Some SES variables not found. They should have names: - warning, it still working\n",
       paste("-", ses_var_factor_clean, "\n"), sep = "")
@@ -57,7 +57,7 @@ check_data <- function(data) {
   # ses part 2 - confirm the factor order. 
   ################
   if(sum("ses_cat_indv" %in% missing_ses_names)>= 1) {
-    stop("not individual variable - ses_cat_indv")
+    warning("not individual variable - ses_cat_indv")
   } else {
   
 
@@ -81,7 +81,7 @@ check_data <- function(data) {
   
   # Area level 
   if(sum("ses_cat_area" %in% missing_ses_names)>= 1) {
-    stop("not area variable - ses_cat_area")
+    warning("not area variable - ses_cat_area")
   } else { 
 
   missing_ses_factor_area_id <- !ses_var_factor_clean %in% unique(data$ses_cat_area)
