@@ -42,7 +42,7 @@ check_data <- function(data) {
 
   missing_ses_names_idx <- !ses_var_clean %in% colnames(data)
 
-  missing_ses_names <- ses_var_clean[missing_expo_names_idx]
+  missing_ses_names <- ses_var_clean[missing_ses_names_idx]
 
   if (length(missing_ses_names) > 0) {
     stop(
@@ -60,9 +60,9 @@ check_data <- function(data) {
     stop("not individual variable - ses_cat_indv")
   } else {
   
-  data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
 
-  missing_ses_factor_indv_id <- !ses_var_factor_clean %in% levels(data$ses_cat_indv)
+
+  missing_ses_factor_indv_id <- !ses_var_factor_clean %in% unique(data$ses_cat_indv)
 
   missing_ses_factor_indv_names <- ses_var_factor_clean[missing_ses_factor_indv_id]
 
@@ -73,16 +73,18 @@ check_data <- function(data) {
       paste("-", ses_var_factor_clean, "\n"), sep = "")
     )
   }
-  }
+
+    data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
+
+}
 
   
   # Area level 
   if(sum("ses_cat_area" %in% missing_ses_names)>= 1) {
     stop("not area variable - ses_cat_area")
   } else { 
-  data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
 
-  missing_ses_factor_area_id <- !ses_var_factor_clean %in% levels(data$ses_cat_area)
+  missing_ses_factor_area_id <- !ses_var_factor_clean %in% unique(data$ses_cat_area)
 
   missing_ses_factor_area_names <- ses_var_factor_clean[missing_ses_factor_area_id]
 
@@ -93,7 +95,10 @@ check_data <- function(data) {
       paste("-", ses_var_factor_clean, "\n"), sep = "")
     )
   }
-  }
+
+data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
+
+}
 
 
   ################
