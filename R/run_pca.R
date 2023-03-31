@@ -58,7 +58,16 @@ run_pca <- function(data,
   # cli::cli_alert(variable_new)
 
   cli::cli_alert("Checking data...")
-  check_data(data)
+
+  vect_fact <- check_data(data)
+
+  if(sum("ses_cat_area" %in% vect_fact) >= 1){
+    data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
+  }
+  
+  if(sum("ses_cat_indv" %in% vect_fact) >= 1){
+   data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
+  }
 
   if (!missing(other_vars)) {
     data <- data[c(exposure_names_clean, ses_var, other_vars)]

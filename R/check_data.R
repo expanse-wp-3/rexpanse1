@@ -57,11 +57,14 @@ check_data <- function(data) {
   ################
   # ses part 2 - confirm the factor order. 
   ################
+  vect_fact <- c()
+
   if(sum("ses_cat_indv" %in% missing_ses_names)>= 1) {
     warning("not individual variable - ses_cat_indv")
   } else {
   
 
+  vect_fact <- c(vect_fact, "ses_cat_indv")
 
   missing_ses_factor_indv_id <- !ses_var_factor_clean %in% unique(data$ses_cat_indv)
 
@@ -75,7 +78,7 @@ check_data <- function(data) {
     )
   }
 
-    data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
+    # data$ses_cat_indv <- factor(data$ses_cat_indv, levels = ses_var_factor_clean)
 
 }
 
@@ -83,7 +86,9 @@ check_data <- function(data) {
   # Area level 
   if(sum("ses_cat_area" %in% missing_ses_names)>= 1) {
     warning("not area variable - ses_cat_area")
-  } else { 
+  } else {
+  
+  vect_fact <- c(vect_fact, "ses_cat_area")
 
   missing_ses_factor_area_id <- !ses_var_factor_clean %in% unique(data$ses_cat_area)
 
@@ -97,7 +102,10 @@ check_data <- function(data) {
     )
   }
 
-data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
+# |data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
+
+
+
 
 }
 
@@ -110,5 +118,7 @@ data$ses_cat_area <- factor(data$ses_cat_area, levels = ses_var_factor_clean)
   if (complete_cases > 0) {
     stop("Exposure or ses variables must not contain missing values.")
   }
-  
+
+vect_fact
+
 }
