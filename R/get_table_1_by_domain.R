@@ -39,7 +39,7 @@ table1_extract <- function(data, ses_var = NULL, age_var = NULL) {
 
     names(data_age_summary) <- c("quantiles_age", "quantile")
 
-
+    sd_age <- sd(pull(data, age_var))
 
   } else {
     data_age_summary <- NULL 
@@ -61,6 +61,7 @@ table1_extract <- function(data, ses_var = NULL, age_var = NULL) {
       table_1_ses_a = table_1_ses_1,
       table_1_ses_b = NULL,
       data_age_quantiles = data_age_summary,
+      age_sd = sd_age,
       n_total = nrow(data)
     )
 
@@ -78,6 +79,7 @@ table1_extract <- function(data, ses_var = NULL, age_var = NULL) {
       table_1_ses_a = table_1_ses_1,
       table_1_ses_b = table_1_ses_2,
       data_age_quantiles = data_age_summary,
+      age_sd = sd_age,
       n_total = nrow(data)
     )
 
@@ -87,6 +89,7 @@ table1_extract <- function(data, ses_var = NULL, age_var = NULL) {
       table_1_ses_a = NULL,
       table_1_ses_b = NULL,
       data_age_quantiles = data_age_summary,
+      age_sd = sd_age,
       n_total = nrow(data)
     )
 
