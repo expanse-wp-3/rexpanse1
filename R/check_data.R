@@ -48,7 +48,8 @@ check_data <- function(data) {
     warning(
       paste(
       "Some SES variables not found. They should have names: - warning, it still working\n",
-      paste("-", ses_var_factor_clean, "\n"), sep = "")
+      paste(" - ",  missing_ses_names, " \n",  sep = "", collapse = ""), sep = "")
+    
     )
 
   }
